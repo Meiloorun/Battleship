@@ -27,3 +27,32 @@ C:\Users\hisha\Documents\Projects\fsharp Battleship\Battleship\obj\Debug\net7.0\
 C:\Users\hisha\Documents\Projects\fsharp Battleship\Battleship\obj\Debug\net7.0\Battleship.pdb
 C:\Users\hisha\Documents\Projects\fsharp Battleship\Battleship\obj\Debug\net7.0\Battleship.genruntimeconfig.cache
 C:\Users\hisha\Documents\Projects\fsharp Battleship\Battleship\obj\Debug\net7.0\ref\Battleship.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\Battleship.exe
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\Battleship.deps.json
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\Battleship.runtimeconfig.json
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\Battleship.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\Battleship.pdb
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\FSharp.Core.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\cs\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\de\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\es\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\fr\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\it\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\ja\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\ko\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\pl\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\pt-BR\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\ru\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\tr\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\zh-Hans\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\bin\Debug\net7.0\zh-Hant\FSharp.Core.resources.dll
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\Battleship.fsproj.AssemblyReference.cache
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\Battleship.AssemblyInfoInputs.cache
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\Battleship.AssemblyInfo.fs
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\Battleship.fsproj.CoreCompileInputs.cache
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\Battleship.fsproj.CopyComplete
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\Battleship.dll
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\refint\Battleship.dll
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\Battleship.pdb
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\Battleship.genruntimeconfig.cache
+D:\Projects\Battleship\Battleship\obj\Debug\net7.0\ref\Battleship.dll

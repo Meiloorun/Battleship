@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NI4tE/yR6M0xeEKDbR7s4W7uyhpCPxieJ8oI5iliqRGMNMjP5sASR2UzvFiRZnY+hZQdPAFauIA0hxEyIAe21w==",
+  "dgSpecHash": "pz6aKbZdDqdTi1uOnu3f28RwNZ9fNYyVsxwKJoNiJP5nXcQ0ey+ytHKWykkoxgHmC94BMDogMVy7ov28HBoyjQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hisha\\Documents\\Projects\\fsharp Battleship\\Battleship\\Battleship.fsproj",
+  "projectFilePath": "D:\\Projects\\Battleship\\Battleship\\Battleship.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\hisha\\.nuget\\packages\\fsharp.core\\7.0.400\\fsharp.core.7.0.400.nupkg.sha512"
+    "C:\\Users\\Hishaam\\.nuget\\packages\\fsharp.core\\7.0.400\\fsharp.core.7.0.400.nupkg.sha512"
   ],
   "logs": []
 }
