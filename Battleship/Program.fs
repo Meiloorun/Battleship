@@ -4,148 +4,196 @@ open System.Collections.Generic
 
 let board = Dictionary<string, bool>()
 
+let convertToLetter (x: int) =
+    if x = 1 then "A"
+    elif x = 2 then "B"
+    elif x = 3 then "C"
+    elif x = 4 then "D"
+    elif x = 5 then "E"
+    elif x = 6 then "F"
+    elif x = 7 then "G"
+    elif x = 8 then "H"
+    elif x = 9 then "I"
+    elif x = 10 then "J"
+    else invalidArg "letter" (sprintf "Invalid index %d used." x)
+
 for x = 1 to 10 do
     for y = 1 to 10 do
-        let x_letter = 
-            if x = 1 then "A"
-            elif x = 2 then "B"
-            elif x = 3 then "C"
-            elif x = 4 then "D"
-            elif x = 5 then "E"
-            elif x = 6 then "F"
-            elif x = 7 then "G"
-            elif x = 8 then "H"
-            elif x = 9 then "I"
-            elif x = 10 then "J"
-            else invalidArg "letter" (sprintf "Invalid index %d used." x)
+        let x_letter = convertToLetter(x)
         let key = sprintf "%s%d" x_letter y
         board.Add(key, false)
 
 printfn "The Battleship Board: %A" board
 
-let mutable battleship_x = System.Random().Next(1,10)
-let mutable battleship_y = System.Random().Next(1,5)
-let battleship_orientation = System.Random().Next(1, 5) //1 - North, 2 - East, 3 - South, 4 - West
+let placeShip (ship_size: int, player: int) =
+    if ship_size > 5 then invalidArg "ship_size" (sprintf "Ship is too big for the game, do not exceed a size of 5")
+    if player > 2 || player < 1 then invalidArg "player" (sprintf "There is only Player 1 and 2")
+    let mutable valid = false
+    let mutable x= System.Random().Next(1,10)
+    let mutable y= 
+        if player = 1 then System.Random().Next(1,5)
+        else System.Random().Next(6,10)
+    let mutable orientation = 0
 
-if battleship_orientation = 1 && battleship_y - 5 < 1 then
-    while battleship_y - 5 < 1 do battleship_y <- battleship_y + 1
+    while valid = false do 
+        x <- System.Random().Next(1,10)
+        y <-
+            if player = 1 then System.Random().Next(1,5)
+            else System.Random().Next(6,10)
+        orientation <- System.Random().Next(1, 5) //1 - North, 2 - East, 3 - South, 4 - West
+        printfn "Initial Coordinates: %s" (sprintf "%s%d" (convertToLetter(x)) y)
 
-if battleship_orientation = 4 && 10 - battleship_y > 5 then
-    while 10 - battleship_y > 5 do battleship_y <- battleship_y - 1
+        if player = 1 then
+            if orientation = 1 && y - ship_size < 1 then
+                printfn "Facing North"
+                while y - ship_size < 1 do y <- y + 1
+                let mutable i = 0
+                let mutable checking = true
+                while checking = true do
+                    let coord = sprintf "%s%d" (convertToLetter(x)) (y-i)
+                    if board[coord] = true then 
+                        valid <- false
+                        checking <- false
+                    else valid <- true
+                    printfn "Checking Coord %s - Value = %b" coord board[coord]
+                    if i = ship_size then checking <- false
+                    i <- i + 1
 
-if battleship_orientation = 2 && 10 - battleship_x > 5 then
-    while 10 - battleship_x > 5 do battleship_x <- battleship_x - 1
+            if orientation = 2 && 10 - x < ship_size then
+                printfn "Facing East"
+                while 10 - x < ship_size do x <- x - 1
+                let mutable i = 0
+                let mutable checking = true
+                while checking = true do
+                    let coord = sprintf "%s%d" (convertToLetter(x+i)) y
+                    printfn "Checking Coord %s - Value = %b" coord board[coord]
+                    if board[coord] = true then 
+                        valid <- false 
+                        checking <- false
+                    else valid <- true
+                    if i = ship_size then checking <- false
+                    i <- i + 1
+                    
 
-if battleship_orientation = 3 && battleship_x - 5 < 1 then
-    while battleship_x - 5 < 1 do battleship_x <- battleship_x + 1
+            if orientation = 3 && 6 - y < ship_size then
+                printfn "Facing South"
+                while 6 - y < ship_size do y <- y - 1
+                let mutable i = 0
+                let mutable checking = true
+                while checking = true do
+                    let coord = sprintf "%s%d" (convertToLetter(x)) (y+i)
+                    if board[coord] = true then 
+                        valid <- false
+                        checking <- false
+                    else valid <- true
+                    printfn "Checking Coord %s - Value = %b" coord board[coord]
+                    if i = ship_size then checking <- false
+                    i <- i + 1
+                    
 
-for i = 0 to 4 do
-    let letter = 
-            if battleship_x = 1 then "A"
-            elif battleship_x = 2 then "B"
-            elif battleship_x = 3 then "C"
-            elif battleship_x = 4 then "D"
-            elif battleship_x = 5 then "E"
-            elif battleship_x = 6 then "F"
-            elif battleship_x = 7 then "G"
-            elif battleship_x = 8 then "H"
-            elif battleship_x = 9 then "I"
-            elif battleship_x = 10 then "J"
-            else invalidArg "letter" (sprintf "Invalid index %d used." battleship_x)
+            if orientation = 4 && x - ship_size < 1 then
+                printfn "Facing West"
+                while x - ship_size < 1 do x <- x + 1
+                let mutable i = 0
+                let mutable checking = true
+                while checking = true do
+                    let coord = sprintf "%s%d" (convertToLetter(x-i)) y
+                    if board[coord] = true then 
+                        valid <- false
+                        checking <- false
+                    else valid <- true
+                    printfn "Checking Coord %s - Value = %b" coord board[coord]
+                    if i = ship_size then checking <- false
+                    i <- i + 1
 
-    let battleship_coord = sprintf "%s%d" letter battleship_y
-    board.[battleship_coord] <- true
-    let temp = board.[battleship_coord]
-    printfn "The value at %s is: %b" battleship_coord temp 
-    if battleship_orientation = 1 then battleship_y <- battleship_y - 1
-    elif battleship_orientation = 2 then battleship_x <- battleship_x + 1
-    elif battleship_orientation = 3 then battleship_x <- battleship_x - 1
-    elif battleship_orientation = 4 then battleship_y <- battleship_y + 1
+        else
+            if orientation = 1 && y - ship_size < 5 then
+                printfn "Facing North"
+                while y - ship_size < 5 do y <- y + 1
+                let mutable i = 0
+                let mutable checking = true
+                while checking = true do
+                    let coord = sprintf "%s%d" (convertToLetter(x)) (y-i)
+                    if board[coord] = true then 
+                        valid <- false
+                        checking <- false
+                    else valid <- true
+                    printfn "Checking Coord %s - Value = %b" coord board[coord]
+                    if i = ship_size then checking <- false
+                    i <- i + 1
 
-let mutable destroyer1_x = System.Random().Next(1,10)
-let mutable destroyer1_y = System.Random().Next(1,5)
-let destroyer1_orientation = System.Random().Next(1, 5) //1 - North, 2 - East, 3 - South, 4 - West
+            if orientation = 2 && 10 - x < ship_size then
+                printfn "Facing East"
+                while 10 - x < ship_size do x <- x - 1
+                let mutable i = 0
+                let mutable checking = true
+                while checking = true do
+                    let coord = sprintf "%s%d" (convertToLetter(x+i)) y
+                    if board[coord] = true then 
+                        valid <- false
+                        checking <- false
+                    else valid <- true
+                    printfn "Checking Coord %s - Value = %b" coord board[coord]
+                    if i = ship_size then checking <- false
+                    i <- i + 1
+                
 
-if destroyer1_orientation = 1 && destroyer1_y - 4 < 1 then
-    while destroyer1_y - 4 < 1 do destroyer1_y <- destroyer1_y + 1
+            if orientation = 3 && 10 - y < ship_size then
+                printfn "Facing South"
+                while 10-y < ship_size do y <- y - 1
+                let mutable i = 0
+                let mutable checking = true
+                while checking = true do
+                    let coord = sprintf "%s%d" (convertToLetter(x)) (y+i)
+                    if board[coord] = true then 
+                        valid <- false
+                        checking <- false
+                    else valid <- true
+                    printfn "Checking Coord %s - Value = %b" coord board[coord]
+                    if i = ship_size then checking <- false
+                    i <- i + 1
+                
 
-if destroyer1_orientation = 4 && 10 - destroyer1_y > 6 then
-    while 10 - destroyer1_y > 6 do destroyer1_y <- destroyer1_y - 1
+            if orientation = 4 && x - ship_size < 1 then
+                printfn "Facing East"
+                while x - ship_size < 1 do x <- x + 1
+                let mutable i = 0
+                let mutable checking = true
+                while checking = true do
+                    let coord = sprintf "%s%d" (convertToLetter(x-i)) y
+                    if board[coord] = true then 
+                        valid <- false
+                        checking <- false
+                    else valid <- true
+                    printfn "Checking Coord %s - Value = %b" coord board[coord]
+                    if i = ship_size then checking <- false
+                    i <- i + 1
 
-if destroyer1_orientation = 2 && 10 - destroyer1_x > 6 then
-    while 10 - destroyer1_x > 6 do destroyer1_x <- destroyer1_x - 1
+    for i = 0 to ship_size - 1 do
+        let coord = 
+            if orientation = 1 then sprintf "%s%d" (convertToLetter(x)) (y-i)
+            elif orientation = 2 then sprintf "%s%d" (convertToLetter(x+i)) (y)
+            elif orientation = 3 then sprintf "%s%d" (convertToLetter(x)) (y+i)
+            elif orientation = 4 then sprintf "%s%d" (convertToLetter(x-i)) (y)
+            else invalidArg "InvalidOrientation" (sprintf "You cannot have an orientation of %d" orientation)
 
-if destroyer1_orientation = 3 && destroyer1_x - 4 < 1 then
-    while destroyer1_x - 4 < 1 do destroyer1_x <- destroyer1_x + 1
+        board.[coord] <- true
+        printfn "%s is now occupied by a ship" coord
+                
+printfn "************ Deploying P1 Battleship ************"
+placeShip(5,1) //Player 1 Battleship
+printfn "************ Deploying P1 Destroyer ************"
+placeShip(4,1) //Player 1 Destroyer
+printfn "************ Deploying P1 Destroyer ************"
+placeShip(4,1) //Player 1 Destroyer
 
-for i = 0 to 3 do
-    let letter = 
-            if destroyer1_x = 1 then "A"
-            elif destroyer1_x = 2 then "B"
-            elif destroyer1_x = 3 then "C"
-            elif destroyer1_x = 4 then "D"
-            elif destroyer1_x = 5 then "E"
-            elif destroyer1_x = 6 then "F"
-            elif destroyer1_x = 7 then "G"
-            elif destroyer1_x = 8 then "H"
-            elif destroyer1_x = 9 then "I"
-            elif destroyer1_x = 10 then "J"
-            else invalidArg "letter" (sprintf "Invalid index %d used." destroyer1_x)
+printfn "************ Deploying P2 Battleship ************"
+placeShip(5,2) //Player 2 Battleship
+printfn "************ Deploying P2 Destroyer ************"
+placeShip(4,2) //Player 2 Destroyer
+printfn "************ Deploying P2 Destroyer ************"
+placeShip(4,2) //Player 2 Destroyer
 
-    let destroyer1_coord = sprintf "%s%d" letter destroyer1_y
-    board.[destroyer1_coord] <- true
-    let temp = board.[destroyer1_coord]
-    printfn "The value at %s is: %b" destroyer1_coord temp 
-    if destroyer1_orientation = 1 then destroyer1_y <- destroyer1_y - 1
-    elif destroyer1_orientation = 2 then destroyer1_x <- destroyer1_x + 1
-    elif destroyer1_orientation = 3 then destroyer1_x <- destroyer1_x - 1
-    elif destroyer1_orientation = 4 then destroyer1_y <- destroyer1_y + 1
-    
-let valid = false
-let mutable destroyer2_x= 0
-let mutable destroyer2_y= 0
-let mutable destroyer2_orientation = 0
 
-while valid = false do
-    destroyer2_x <- System.Random().Next(1,10)
-    destroyer2_y <- System.Random().Next(1,5)
-    destroyer2_orientation <- System.Random().Next(1, 5) //1 - North, 2 - East, 3 - South, 4 - West
-    let destroyer2_coord = sprintf "%s%d" letter destroyer2_y
 
-    if destroyer2_orientation = 1 && destroyer2_y - 4 < 1 then
-        while destroyer2_y - 4 < 1 do
-            //if 
-            destroyer2_y <- destroyer2_y + 1
-
-    if destroyer2_orientation = 4 && 10 - destroyer2_y > 6 then
-        while 10 - destroyer2_y > 6 do destroyer2_y <- destroyer2_y - 1
-
-    if destroyer2_orientation = 2 && 10 - destroyer2_x > 6 then
-        while 10 - destroyer2_x > 6 do destroyer2_x <- destroyer2_x - 1
-
-    if destroyer2_orientation = 3 && destroyer2_x - 4 < 1 then
-        while destroyer2_x - 4 < 1 do destroyer2_x <- destroyer2_x + 1
-
-for i = 0 to 3 do
-    let letter = 
-            if destroyer2_x = 1 then "A"
-            elif destroyer2_x = 2 then "B"
-            elif destroyer2_x = 3 then "C"
-            elif destroyer2_x = 4 then "D"
-            elif destroyer2_x = 5 then "E"
-            elif destroyer2_x = 6 then "F"
-            elif destroyer2_x = 7 then "G"
-            elif destroyer2_x = 8 then "H"
-            elif destroyer2_x = 9 then "I"
-            elif destroyer2_x = 10 then "J"
-            else invalidArg "letter" (sprintf "Invalid index %d used." destroyer2_x)
-
-    let destroyer2_coord = sprintf "%s%d" letter destroyer2_y
-    board.[destroyer2_coord] <- true
-    let temp = board.[destroyer2_coord]
-    printfn "The value at %s is: %b" destroyer2_coord temp 
-    if destroyer2_orientation = 1 then destroyer2_y <- destroyer2_y - 1
-    elif destroyer2_orientation = 2 then destroyer2_x <- destroyer2_x + 1
-    elif destroyer2_orientation = 3 then destroyer2_x <- destroyer2_x - 1
-    elif destroyer2_orientation = 4 then destroyer2_y <- destroyer2_y + 1
 
