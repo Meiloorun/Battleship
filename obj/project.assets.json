@@ -114,11 +114,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Battleship\\Battleship\\Battleship.fsproj",
+      "projectUniqueName": "D:\\Projects\\Battleship\\Battleship.fsproj",
       "projectName": "Battleship",
-      "projectPath": "D:\\Projects\\Battleship\\Battleship\\Battleship.fsproj",
+      "projectPath": "D:\\Projects\\Battleship\\Battleship.fsproj",
       "packagesPath": "C:\\Users\\Hishaam\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Battleship\\Battleship\\obj\\",
+      "outputPath": "D:\\Projects\\Battleship\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pz6aKbZdDqdTi1uOnu3f28RwNZ9fNYyVsxwKJoNiJP5nXcQ0ey+ytHKWykkoxgHmC94BMDogMVy7ov28HBoyjQ==",
+  "dgSpecHash": "ARPeeiWC3SwCP084hjIW95OySSjWnl86uhm9IpVzRWDCuUlDvpCZtXv8rmrbrtiNTnj2UDbARXL5hMJ7Pps7fg==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\Battleship\\Battleship\\Battleship.fsproj",
+  "projectFilePath": "D:\\Projects\\Battleship\\Battleship.fsproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hishaam\\.nuget\\packages\\fsharp.core\\7.0.400\\fsharp.core.7.0.400.nupkg.sha512"
   ],
